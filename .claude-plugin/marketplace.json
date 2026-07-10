@@ -1,0 +1,26 @@
+{
+  "name": "fullstack-ts-scaffold",
+  "owner": {
+    "name": "Shantanu Bombatkar",
+    "email": "shantanubombatkar2@gmail.com"
+  },
+  "description": "Full-stack TypeScript scaffold — a Claude Code skill that generates and verifies a production-shaped Next.js + Express monorepo.",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "fullstack-ts-scaffold",
+      "displayName": "Full-Stack TypeScript Scaffold",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "Regenerates a production-shaped full-stack TypeScript monorepo (Next.js 15 client + Express API with three swappable DB backends, JWT rotating-refresh auth, PWA, tests, CI) and verifies it green in ~1-3 min.",
+      "author": {
+        "name": "Shantanu Bombatkar",
+        "email": "shantanubombatkar2@gmail.com"
+      },
+      "homepage": "https://github.com/shaantanu9/fullstack-ts-scaffold",
+      "repository": "https://github.com/shaantanu9/fullstack-ts-scaffold",
+      "license": "MIT",
+      "keywords": ["scaffold", "boilerplate", "fullstack", "typescript", "nextjs", "express"]
+    }
+  ]
+}
