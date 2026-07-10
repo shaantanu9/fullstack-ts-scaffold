@@ -32,11 +32,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24 # ships npm 11 — supports --provenance and OIDC trusted publishing
           registry-url: https://registry.npmjs.org
-
-      - name: Use recent npm (provenance / OIDC)
-        run: npm install -g npm@latest
 
       - name: Validate package contents
         run: npm pack --dry-run
