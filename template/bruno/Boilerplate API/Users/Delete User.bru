@@ -1,0 +1,21 @@
+meta {
+  name: Delete User
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/users/{{deleteUserId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminAccessToken}}
+}
+
+tests {
+  test("should return 204 No Content", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

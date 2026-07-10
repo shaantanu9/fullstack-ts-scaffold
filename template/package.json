@@ -1,0 +1,72 @@
+{
+  "name": "boilerplate-nextjs-express",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-ready Next.js + Express TypeScript boilerplate (choose Postgres, MongoDB, or Supabase)",
+  "scripts": {
+    "free:ports": "node scripts/free-port.mjs 5002 5003 5004 3000",
+    "predev": "node scripts/free-port.mjs 5002 3000",
+    "dev": "concurrently \"pnpm --filter server-sql dev\" \"pnpm --filter client dev\"",
+    "predev:mongo": "node scripts/free-port.mjs 5003 3000",
+    "dev:mongo": "concurrently \"pnpm --filter server-mongo dev\" \"pnpm --filter client dev\"",
+    "build": "pnpm --filter server-sql build && pnpm --filter client build",
+    "build:mongo": "pnpm --filter server-mongo build && pnpm --filter client build",
+    "start": "pnpm --filter server-sql start",
+    "start:mongo": "pnpm --filter server-mongo start",
+    "test": "pnpm --filter server-sql test && pnpm --filter client test",
+    "test:mongo": "pnpm --filter server-mongo test && pnpm --filter client test",
+    "test:api": "pnpm test:api:sql",
+    "test:api:sql": "cd \"bruno/Boilerplate API\" && bru run . -r --env sql",
+    "test:api:mongo": "cd \"bruno/Boilerplate API\" && bru run . -r --env mongo",
+    "test:api:ci": "concurrently --kill-others --success first \"pnpm --filter server-sql dev\" \"sleep 8 && pnpm test:api:sql\"",
+    "test:api:ci:mongo": "concurrently --kill-others --success first \"pnpm --filter server-mongo dev\" \"sleep 8 && pnpm test:api:mongo\"",
+    "test:e2e": "vitest run --config e2e/vitest.config.ts",
+    "test:e2e:mongo": "E2E_SERVER_FILTER=server-mongo vitest run --config e2e/vitest.config.ts",
+    "test:all": "pnpm test && pnpm test:api:ci && pnpm test:e2e",
+    "lint": "pnpm --filter server-sql lint && pnpm --filter client lint",
+    "lint:mongo": "pnpm --filter server-mongo lint && pnpm --filter client lint",
+    "format": "pnpm --filter server-sql format && pnpm --filter client format",
+    "type-check": "pnpm --filter server-sql exec tsc --noEmit && pnpm --filter client type-check",
+    "type-check:mongo": "pnpm --filter server-mongo exec tsc --noEmit && pnpm --filter client type-check",
+    "db:up": "docker compose -f server-sql/docker-compose.yml up -d",
+    "db:down": "docker compose -f server-sql/docker-compose.yml down",
+    "db:up:mongo": "docker compose -f server-mongo/docker-compose.yml up -d",
+    "db:down:mongo": "docker compose -f server-mongo/docker-compose.yml down",
+    "predev:supabase": "node scripts/free-port.mjs 5004 3000",
+    "dev:supabase": "concurrently \"pnpm --filter server-supabase dev\" \"pnpm --filter client dev\"",
+    "build:supabase": "pnpm --filter server-supabase build && pnpm --filter client build",
+    "start:supabase": "pnpm --filter server-supabase start",
+    "test:supabase": "pnpm --filter server-supabase test && pnpm --filter client test",
+    "test:api:supabase": "cd \"bruno/Boilerplate API\" && bru run . -r --env supabase",
+    "test:api:ci:supabase": "concurrently --kill-others --success first \"pnpm --filter server-supabase dev\" \"sleep 8 && pnpm test:api:supabase\"",
+    "lint:supabase": "pnpm --filter server-supabase lint && pnpm --filter client lint",
+    "type-check:supabase": "pnpm --filter server-supabase exec tsc --noEmit && pnpm --filter client type-check",
+    "db:up:supabase": "docker compose -f server-supabase/docker-compose.yml up -d && (cd server-supabase && supabase start)",
+    "db:down:supabase": "(cd server-supabase && supabase stop) ; docker compose -f server-supabase/docker-compose.yml down",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
+    "@usebruno/cli": "^3.5.1",
+    "concurrently": "^8.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "puppeteer": "^25.3.0",
+    "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.5.0",
+  "pnpm": {
+    "overrides": {
+      "postcss": "^8.5.10",
+      "esbuild": "^0.28.1",
+      "ioredis": "5.11.1",
+      "form-data": ">=4.0.6",
+      "uuid": ">=11.1.1"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+import { cleanEnv, port, str, url, makeValidator } from 'envalid';
+
+const minLengthString = (minLength: number) =>
+  makeValidator<string>((input: string) => {
+    if (typeof input !== 'string') {
+      throw new Error(`Expected string, got ${typeof input}`);
+    }
+    if (input.length < minLength) {
+      throw new Error(`String must be at least ${minLength} characters long`);
+    }
+    return input;
+  });
+
+export const env = cleanEnv(process.env, {
+  NODE_ENV: str({ choices: ['development', 'test', 'production'], default: 'development' }),
+  PORT: port({ default: 5002 }),
+  CLIENT_URL: url({ default: 'http://localhost:3000' }),
+  API_PREFIX: str({ default: '/api/v1' }),
+  SUPABASE_URL: url(),
+  SUPABASE_SERVICE_ROLE_KEY: str(),
+  SUPABASE_ANON_KEY: str({ default: '' }),
+  REDIS_URL: url(),
+  ACCESS_TOKEN_SECRET: minLengthString(32)(),
+  ACCESS_TOKEN_EXPIRY: str({ default: '15m' }),
+  REFRESH_TOKEN_SECRET: minLengthString(32)(),
+  REFRESH_TOKEN_EXPIRY: str({ default: '7d' }),
+  LOG_LEVEL: str({
+    choices: ['error', 'warn', 'info', 'http', 'verbose', 'debug', 'silly'],
+    default: 'info',
+  }),
+  // ImageKit (optional). Leave blank to disable image uploads — the auth
+  // endpoint then returns 503 until these are set. See docs/manual-todo/imagekit-setup.md.
+  IMAGEKIT_PUBLIC_KEY: str({ default: '' }),
+  IMAGEKIT_PRIVATE_KEY: str({ default: '' }),
+  IMAGEKIT_URL_ENDPOINT: str({ default: '' }),
+});

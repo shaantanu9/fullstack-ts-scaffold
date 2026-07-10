@@ -1,0 +1,8 @@
+packages:
+  - 'client'
+  # Three fully-independent backends sharing the same API contract, client, e2e,
+  # and Bruno collection — each on its own port. Pick ONE for a real project and
+  # delete the other folders + their lines here; nothing else references them.
+  - 'server-sql' # Postgres + Prisma       (port 5002, redis 6381) — default
+  - 'server-mongo' # MongoDB + Mongoose     (port 5003, redis 6382)
+  - 'server-supabase' # supabase-js, no ORM (port 5004, redis 6383, supabase-cli)

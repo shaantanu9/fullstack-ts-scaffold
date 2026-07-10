@@ -1,0 +1,30 @@
+meta {
+  name: Register User to Delete
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "bruno-delete@example.com",
+    "password": "SecureP@ssw0rd1",
+    "name": "Bruno Delete"
+  }
+}
+
+tests {
+  test("should return 201 Created", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+
+  test("should store user id", function() {
+    const json = res.getBody();
+    bru.setVar("deleteUserId", json.data.user.id);
+  });
+}

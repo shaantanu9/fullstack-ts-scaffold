@@ -1,0 +1,32 @@
+meta {
+  name: Get ImageKit Auth
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/uploads/imagekit-auth
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+tests {
+  test("should return 200 (configured) or 503 (not configured)", function() {
+    expect([200, 503]).to.include(res.getStatus());
+  });
+
+  test("should return signed upload params when configured", function() {
+    if (res.getStatus() === 200) {
+      const json = res.getBody();
+      expect(json.success).to.be.true;
+      expect(json.data.token).to.be.a("string");
+      expect(json.data.signature).to.be.a("string");
+      expect(json.data.publicKey).to.be.a("string");
+      expect(json.data.urlEndpoint).to.be.a("string");
+    }
+  });
+}

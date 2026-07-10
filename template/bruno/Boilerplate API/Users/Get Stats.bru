@@ -1,0 +1,31 @@
+meta {
+  name: Get Stats
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/users/stats
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+tests {
+  test("should return 200 OK", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("should return aggregated user statistics", function() {
+    const json = res.getBody();
+    expect(json.success).to.be.true;
+    expect(json.data.total).to.be.a("number");
+    expect(json.data.active).to.be.a("number");
+    expect(json.data.inactive).to.be.a("number");
+    expect(json.data.recentSignups).to.be.a("number");
+    expect(json.data.byRole).to.be.an("object");
+  });
+}

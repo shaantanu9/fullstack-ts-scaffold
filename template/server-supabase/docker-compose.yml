@@ -1,0 +1,21 @@
+version: '3.8'
+
+# Only Redis lives here. The Postgres/Auth/REST stack is the local Supabase
+# instance managed by the Supabase CLI (`supabase start`), NOT docker-compose.
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: boilerplate_supabase_redis
+    restart: unless-stopped
+    ports:
+      - '6383:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  redis_data:

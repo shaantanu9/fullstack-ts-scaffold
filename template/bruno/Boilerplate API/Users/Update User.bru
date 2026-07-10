@@ -1,0 +1,33 @@
+meta {
+  name: Update User
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/users/{{userId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminAccessToken}}
+}
+
+body:json {
+  {
+    "name": "Updated by Bruno"
+  }
+}
+
+tests {
+  test("should return 200 OK", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("should update the user name", function() {
+    const json = res.getBody();
+    expect(json.success).to.be.true;
+    expect(json.data.name).to.equal("Updated by Bruno");
+  });
+}
