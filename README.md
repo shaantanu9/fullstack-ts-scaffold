@@ -1,4 +1,4 @@
-# scaffold-takehome-boilerplate
+# fullstack-ts-scaffold
 
 A **Claude Code skill** that regenerates a complete, production-shaped **full-stack TypeScript
 boilerplate** from a frozen snapshot and **verifies it green** — a Next.js 15 client + an Express
@@ -46,15 +46,15 @@ guaranteed-quick build even on a loaded machine.
 This repo **is** the skill. Clone it straight into your Claude Code skills directory:
 
 ```bash
-git clone https://github.com/shaantanu9/scaffold-takehome-boilerplate \
-  ~/.claude/skills/scaffold-takehome-boilerplate
+git clone https://github.com/shaantanu9/fullstack-ts-scaffold \
+  ~/.claude/skills/fullstack-ts-scaffold
 ```
 
 Or use the installer (clones/copies into place):
 
 ```bash
-git clone https://github.com/shaantanu9/scaffold-takehome-boilerplate
-cd scaffold-takehome-boilerplate && ./install.sh
+git clone https://github.com/shaantanu9/fullstack-ts-scaffold
+cd fullstack-ts-scaffold && ./install.sh
 ```
 
 Claude Code picks up the skill from `SKILL.md`. You can also run the generator directly (below) —
@@ -65,7 +65,7 @@ it has **zero runtime dependencies** (plain Node).
 ## Usage
 
 ```bash
-SKILL=~/.claude/skills/scaffold-takehome-boilerplate
+SKILL=~/.claude/skills/fullstack-ts-scaffold
 
 # all three backends (default), full gate:
 node $SKILL/scaffold.mjs ./my-app --name my-app

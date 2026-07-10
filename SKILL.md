@@ -1,5 +1,5 @@
 ---
-name: scaffold-takehome-boilerplate
+name: fullstack-ts-scaffold
 description: Use when scaffolding a full-stack TypeScript take-home, or deciding its commit order, speed budget, code-quality bar, or how to parallelise a build across agents. Ships a frozen `template/` + `scaffold.mjs` that regenerates a working repo and verifies it GREEN in <=30 min, plus a minimal walking skeleton (bootstrap measured at 1m04s). Covers: README-first/walking-skeleton commit order and its gate, `npm run dev` returning 404 with EMFILE (tsx watch), Docker image shrinking (1.09GB->316MB), React Testing Library wiring traps, and debugging rules. Triggers on "set up the boilerplate", "scaffold the take-home starter", "bootstrap the monorepo in 30 minutes", "new full-stack ts project", "walking skeleton", "commit order", "parallel agents build", "npm run dev 404", "EMFILE watchpack", "shrink docker image".
 ---
 
@@ -21,7 +21,7 @@ and **runs the exact `ci.yml` gate — it will not report "ready" until green.**
 
 ```bash
 # all three backends (default):
-node ~/.claude/skills/scaffold-takehome-boilerplate/scaffold.mjs ./my-assignment --name my-assignment
+node ~/.claude/skills/fullstack-ts-scaffold/scaffold.mjs ./my-assignment --name my-assignment
 
 # one backend only (leaner, purpose-built submission):
 node .../scaffold.mjs ./my-assignment --name my-assignment --only sql   # or --only mongo | --only supabase
@@ -80,9 +80,9 @@ it, so the skill stays current:
 
 ```bash
 cd <reference-repo>   # e.g. boilerplate_nexjs_express, on a clean, green, committed HEAD
-rm -rf ~/.claude/skills/scaffold-takehome-boilerplate/template
-mkdir  ~/.claude/skills/scaffold-takehome-boilerplate/template
-git archive HEAD | tar -x -C ~/.claude/skills/scaffold-takehome-boilerplate/template
+rm -rf ~/.claude/skills/fullstack-ts-scaffold/template
+mkdir  ~/.claude/skills/fullstack-ts-scaffold/template
+git archive HEAD | tar -x -C ~/.claude/skills/fullstack-ts-scaffold/template
 ```
 
 `git archive HEAD` freezes exactly the tracked files — no `node_modules`, no real

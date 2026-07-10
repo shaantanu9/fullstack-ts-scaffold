@@ -13,14 +13,14 @@ Added SOC 2 (Trust Services Criteria) technical controls and an audit flow to th
 - **Vulnerability management:** `.github/workflows/security.yml` (pnpm audit, gitleaks secret scan, CodeQL SAST, weekly schedule) and `.github/dependabot.yml` (grouped weekly dependency + action + docker updates).
 - **Disclosure policy:** `SECURITY.md` (private reporting, secret-handling rules).
 - **Security audit trail (both backends, byte-identical):** `utils/audit.ts` logs structured security events (login success/failure, register, logout, token refresh, authz-denied, user update/delete); `middlewares/requestId.ts` adds `x-request-id` correlation IDs attached to logs; wired at the controller/middleware layer with tests.
-- **Skills:** new global `scaffold-takehome-boilerplate` (recreates the whole monorepo, with build sequence + battle-tested gotchas); extended `takehome-assignment-audit` with a SOC 2 / security-compliance sweep.
+- **Skills:** new global `fullstack-ts-scaffold` (recreates the whole monorepo, with build sequence + battle-tested gotchas); extended `takehome-assignment-audit` with a SOC 2 / security-compliance sweep.
 
 ## Files Created
 
 - `docs/COMPLIANCE.md`, `SECURITY.md`
 - `.github/workflows/security.yml`, `.github/dependabot.yml`
 - `server-sql/src/utils/audit.ts`, `server-sql/src/middlewares/requestId.ts` (+ mongo copies) and their tests
-- `~/.claude/skills/scaffold-takehome-boilerplate/SKILL.md` (global)
+- `~/.claude/skills/fullstack-ts-scaffold/SKILL.md` (global)
 
 ## Files Modified
 

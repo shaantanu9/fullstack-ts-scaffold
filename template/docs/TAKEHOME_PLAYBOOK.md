@@ -395,4 +395,4 @@ Recommendation:  Strong hire / Hire / Lean no / No
 
 ---
 
-*Related docs in this repo: [`TAKEHOME_BEST_PRACTICES.md`](../TAKEHOME_BEST_PRACTICES.md) (rubric quick-reference) · [`docs/COMPLIANCE.md`](COMPLIANCE.md) (SOC 2 control matrix) · [`docs/SUBMISSION_TEMPLATE.md`](SUBMISSION_TEMPLATE.md) (fill-in write-up). Companion skills: `takehome-assignment-audit`, `takehome-fullstack-boilerplate`, `scaffold-takehome-boilerplate`.*
+*Related docs in this repo: [`TAKEHOME_BEST_PRACTICES.md`](../TAKEHOME_BEST_PRACTICES.md) (rubric quick-reference) · [`docs/COMPLIANCE.md`](COMPLIANCE.md) (SOC 2 control matrix) · [`docs/SUBMISSION_TEMPLATE.md`](SUBMISSION_TEMPLATE.md) (fill-in write-up). Companion skills: `takehome-assignment-audit`, `takehome-fullstack-boilerplate`, `fullstack-ts-scaffold`.*

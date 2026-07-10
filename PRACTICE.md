@@ -28,7 +28,7 @@ use `--only sql` to stay safe.
 ```bash
 # 1. Regenerate the whole project from the skill (both backends).
 #    Use --only sql (or --only mongo) for a leaner, faster, single-backend run.
-node ~/.claude/skills/scaffold-takehome-boilerplate/scaffold.mjs ./practice-app --name practice-app
+node ~/.claude/skills/fullstack-ts-scaffold/scaffold.mjs ./practice-app --name practice-app
 #    (add --only sql   to halve the verify time and produce a purpose-built repo)
 
 #    The script does EVERYTHING and refuses to say "ready" until green:

@@ -27,4 +27,4 @@ First public release.
 - default (all three, real Postgres+Mongo+Supabase) 18/18 green in ~3 min + boots live.
 - `--fast` green in ~1 min and serves.
 
-[1.0.0]: https://github.com/shaantanu9/scaffold-takehome-boilerplate/releases/tag/v1.0.0
+[1.0.0]: https://github.com/shaantanu9/fullstack-ts-scaffold/releases/tag/v1.0.0

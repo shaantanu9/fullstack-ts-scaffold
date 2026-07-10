@@ -3,7 +3,7 @@
 # Usage: ./install.sh        (from a clone of this repo)
 set -euo pipefail
 
-SKILL_NAME="scaffold-takehome-boilerplate"
+SKILL_NAME="fullstack-ts-scaffold"
 DEST="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/$SKILL_NAME"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
