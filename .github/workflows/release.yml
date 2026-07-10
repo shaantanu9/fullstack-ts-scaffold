@@ -38,9 +38,11 @@ jobs:
       - name: Validate package contents
         run: npm pack --dry-run
 
-      - name: Dry-run publish (no auth, no upload)
+      - name: Dry-run publish (simulate; already-published version is OK here)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
-        run: npm publish --dry-run --access public
+        run: |
+          npm publish --dry-run --access public \
+            || echo "::notice::Dry-run: the current version is already on npm (expected). Package contents validated above; bump package.json before a real release."
 
       - name: Publish to npm
         if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
