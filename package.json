@@ -1,0 +1,47 @@
+{
+  "name": "fullstack-ts-scaffold",
+  "version": "1.0.0",
+  "description": "Scaffold a production-shaped full-stack TypeScript monorepo (Next.js 15 client + Express API with three swappable DB backends, JWT rotating-refresh auth, PWA, tests, CI) and verify it green in ~1-3 min.",
+  "bin": {
+    "fullstack-ts-scaffold": "scaffold.mjs"
+  },
+  "files": [
+    "scaffold.mjs",
+    "template",
+    "SKILL.md",
+    "ADAPT.md",
+    "PRACTICE.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    ".claude-plugin"
+  ],
+  "keywords": [
+    "scaffold",
+    "boilerplate",
+    "starter",
+    "fullstack",
+    "typescript",
+    "nextjs",
+    "express",
+    "prisma",
+    "mongoose",
+    "supabase",
+    "monorepo",
+    "takehome",
+    "claude-code"
+  ],
+  "author": "Shantanu Bombatkar <shantanubombatkar2@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/shaantanu9/fullstack-ts-scaffold#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaantanu9/fullstack-ts-scaffold.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shaantanu9/fullstack-ts-scaffold/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
