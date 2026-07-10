@@ -1,0 +1,15 @@
+# The generator has zero runtime deps; nothing here should ever appear, but guard anyway.
+node_modules/
+.pnpm-store/
+
+# Never commit real secrets — only the template's *.env.example placeholders belong in git.
+.env
+.env.local
+*.env
+!*.env.example
+
+# Build/OS noise
+dist/
+.next/
+.DS_Store
+*.log
