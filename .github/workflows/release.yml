@@ -1,0 +1,60 @@
+name: Publish to npm
+
+# Publishes the package to npm automatically when a GitHub Release is published.
+# Also runs a no-auth dry-run on manual dispatch so you can validate without publishing.
+#
+# ACTIVATION (one-time): add an npm token as a repo secret named NPM_TOKEN
+#   - npmjs.com → Access Tokens → Generate → "Automation" (or a Granular token with
+#     publish rights). Automation tokens bypass 2FA, so no OTP / security-key prompt.
+#   - gh secret set NPM_TOKEN -R shaantanu9/fullstack-ts-scaffold
+# Alternative (tokenless): configure OIDC Trusted Publishing for this package on npm,
+#   then delete the NODE_AUTH_TOKEN line below — `npm publish` auto-uses OIDC.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (validate only, do not publish)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write # required for npm provenance attestation
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Use recent npm (provenance / OIDC)
+        run: npm install -g npm@latest
+
+      - name: Validate package contents
+        run: npm pack --dry-run
+
+      - name: Dry-run publish (no auth, no upload)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: npm publish --dry-run --access public
+
+      - name: Publish to npm
+        if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VER=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
+            echo "::error::$NAME@$VER is already on npm — bump the version in package.json first."
+            exit 1
+          fi
+          echo "Publishing $NAME@$VER…"
+          npm publish --provenance --access public
